@@ -14,9 +14,9 @@ class InlineCommandSuggest(AutoSuggest):
         for cmd in COMMANDS:
             if cmd.startswith(text) and cmd != text:
                 return Suggestion(cmd[len(text):])
-            else:
-                auto_command = autocomplete_suggestion(text)
-                return Suggestion(auto_command[len(text):])
+            # else:
+            #     auto_command = autocomplete_suggestion(text)
+            #     return Suggestion(auto_command[len(text):])
 
 kb = KeyBindings()
 @kb.add('tab')

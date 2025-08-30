@@ -99,3 +99,5 @@ def command_question(prompt):
         reasoning_effort="low")
     command = response.choices[0].message.content.strip("`")
     return {"question_type":"command","answer":command}
+
+

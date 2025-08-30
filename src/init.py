@@ -6,7 +6,7 @@ from llm.model import question_answer
 import subprocess
 import click
 
-COMMANDS = ['ls', 'echo', 'pwd', 'cat', 'exit']  # Example command list
+COMMANDS = ['ls', 'echo', 'pwd', 'cat', 'exit']
 
 class InlineCommandSuggest(AutoSuggest):
     def get_suggestion(self, buffer, document):
@@ -14,7 +14,9 @@ class InlineCommandSuggest(AutoSuggest):
         for cmd in COMMANDS:
             if cmd.startswith(text) and cmd != text:
                 return Suggestion(cmd[len(text):])
-        return None
+            else:
+                auto_command = autocomplete_suggestion(text)
+                return Suggestion(auto_command[len(text):])
 
 kb = KeyBindings()
 @kb.add('tab')
@@ -23,10 +25,8 @@ def _(event):
     suggestion = buffer.suggestion
 
     if suggestion:
-        print(suggestion.text)  # Replaced console.log with print
         buffer.insert_text(suggestion.text)
         buffer.suggestion = None
-        buffer.text = '' 
 
 session = PromptSession(auto_suggest=InlineCommandSuggest(), key_bindings=kb)
 
@@ -50,7 +50,9 @@ def main():
             break
 
 def setCommand(command):
-    click.secho("This command you are looking for is probably: \n" + command + ".\nPress CTRL+K to execute", fg='green')
+    click.secho("This command you are looking for is probably:")
+    click.secho(command, fg='green')
+    click.secho("\nPress CTRL+K to execute")
     if click.confirm("Do you want to execute this command?"):
         click.secho("Executing: " + command, fg='green')
         try:
@@ -61,3 +63,4 @@ def setCommand(command):
     return
 if __name__ == "__main__":
     main()
+

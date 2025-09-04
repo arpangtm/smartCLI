@@ -5,6 +5,13 @@ from llm import autocomplete_suggestion
 from llm.model import question_answer
 import subprocess
 import click
+import pyfiglet
+from rich.panel import Panel
+from rich.console import Console
+from rich.align import Align
+from questionaire import questionaire
+
+console = Console()
 
 COMMANDS = ['ls', 'echo', 'pwd', 'cat', 'exit']
 
@@ -15,8 +22,9 @@ class InlineCommandSuggest(AutoSuggest):
             if cmd.startswith(text) and cmd != text:
                 return Suggestion(cmd[len(text):])
             # else:
-            #     auto_command = autocomplete_suggestion(text)
-            #     return Suggestion(auto_command[len(text):])
+                # auto_command = autocomplete_suggestion(text)
+                # if auto_command:
+                #     return Suggestion(auto_command[len(text):])
 
 kb = KeyBindings()
 @kb.add('tab')
@@ -31,6 +39,17 @@ def _(event):
 session = PromptSession(auto_suggest=InlineCommandSuggest(), key_bindings=kb)
 
 def main():
+    # clear screen
+
+    subprocess.run("clear", shell=True, check=True, text=True, capture_output=True)
+    setup_success = questionaire()
+    if not setup_success:
+        return
+    subprocess.run("clear", shell=True, check=True, text=True, capture_output=True)
+    banner_text = pyfiglet.figlet_format("NEXCLI", font="slant")
+    banner_text = Align.center(banner_text)
+    panel = Panel(banner_text, title="🎉 Welcome 🎉", style="bold cyan")
+    console.print(panel)
     while True:
         try:
             command = session.prompt(">> ")
@@ -52,7 +71,6 @@ def main():
 def setCommand(command):
     click.secho("This command you are looking for is probably:")
     click.secho(command, fg='green')
-    click.secho("\nPress CTRL+K to execute")
     if click.confirm("Do you want to execute this command?"):
         click.secho("Executing: " + command, fg='green')
         try:

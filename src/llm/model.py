@@ -3,6 +3,9 @@ import time
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from typing import Literal
+import json
+from urllib3 import response
+from RAG import RAG_Search
 
 load_dotenv()
 
@@ -15,6 +18,7 @@ client = OpenAI(
 
 class question_answer_response(BaseModel):
     question_type: Literal["command", "general", "correction"] = Field(description="The type of question. 1. The command is a question about a terminal command or a command the user needs help with (command). 2. The command is a general question (general). 3. The command is a terminal command but the user is using it correctly (correction)")
+
 
 def autocomplete_suggestion(prompt):
 
@@ -67,20 +71,26 @@ def question_answer(prompt):
 
 
 def general_question(prompt):
-    prompt = f"""{{question:"{prompt}"}}"""
-    response = client.chat.completions.create(
-        model="meta-llama/llama-4-scout:free",
-        messages=[
-            {"role": "system", "content": f"""
-            Answer in very short. Possibly 1-2 lines.
-            """},
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        reasoning_effort="low")
-    return {"question_type":"general","answer":response.choices[0].message.content}
+    with open("config.json", "r") as f:
+        config = json.load(f)
+        if config["RAG"]["enabled"]:
+            response = RAG_Search(prompt)
+        else:
+            prompt = f"""{{question:"{prompt}"}}"""
+            response = client.chat.completions.create(
+                model="meta-llama/llama-4-scout:free",
+                messages=[
+                    {"role": "system", "content": f"""
+                    Answer in very short. Possibly 1-2 lines.
+                    """},
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                reasoning_effort="low")
+            response = response.choices[0].message.content
+    return {"question_type":"general","answer":response}
 
 
 def command_question(prompt):

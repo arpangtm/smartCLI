@@ -1,0 +1,13 @@
+Your solo development toolkit is sharp and purposeful:
+
+Full-Stack Web Development: You build responsive, performant apps using Next.js, TypeScript, Firebase, and TailwindCSS.
+
+Cloud Architecture: You design secure, event-driven systems with AWS Lambda, DynamoDB, and Streams, integrating authentication flows with precision.
+
+Scripting & Debugging: You use Python for automation and analysis, with a strong focus on understanding error output and improving code clarity.
+
+Developer Productivity: You customize your environment with tools like Karabiner and Vim-style navigation, optimizing for speed and control.
+
+AI & NLP Integration: You’ve built agentic tools that personalize command-line interactions and support autonomous error handling.
+
+Documentation & Communication: You write with clarity, balancing technical depth with accessibility for diverse audiences.

@@ -1,0 +1,5 @@
+You’ve built tools that reflect both technical ownership and user empathy:
+
+Databooku: A solo-built platform that transforms Jupyter notebooks into SEO-friendly, interactive web pages. It auto-generates tables of contents and supports responsive design—making data engineers’ work more discoverable and usable.
+
+SmartCLI: An AI-powered Bash companion that uses NLP and retrieval-augmented generation to personalize command suggestions and autonomously debug errors. It’s a practical, adaptive tool for developers who want more than static scripts.

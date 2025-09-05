@@ -59,32 +59,38 @@ At its core, SmartCLI is an **agentic AI system**—capable of reasoning, adapti
 
 ## 🚀 Getting Started
 
+If you don't have uv installed, you can install it using the following command:
+
 ```bash
-smartcli --init
+git clone https://github.com/arpangautam/nexcli.git
 ```
 
-To enter learning mode:
+Paste your openrouter api key in the .env file
 
 ```bash
-smartcli --learn
+curl -Ls https://astral.sh/uv/install.sh | sh
 ```
 
-To debug a script:
-
 ```bash
-smartcli debug myscript.sh
+cd smartcli
 ```
 
-To personalize with local context:
-
 ```bash
-smartcli --context ./myproject/
+uv pip install
 ```
 
-To ask a question:
-
 ```bash
-smartcli "How do I optimize this cron job?"
+uv run nexcli
+```
+
+To personalize with local context enable RAG:
+
+config.json
+```bash
+{
+    "RAG": true,
+    "folder": "PATH_TO_YOUR_CONTEXTS"
+}   
 ```
 
 SmartCLI will automatically use RAG to tailor its response based on your project files.

@@ -1,7 +1,7 @@
 import click
 import json
 import os
-from RAG import RAG_Setup
+from nexcli.src.RAG import RAG_Setup
 
 def questionaire():
     if os.path.isfile("config.json"):

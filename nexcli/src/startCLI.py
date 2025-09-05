@@ -1,15 +1,15 @@
 from prompt_toolkit import PromptSession
 from prompt_toolkit.auto_suggest import AutoSuggest, Suggestion
 from prompt_toolkit.key_binding import KeyBindings
-from llm import autocomplete_suggestion
-from llm.model import question_answer
+from nexcli.src.llm import autocomplete_suggestion
+from nexcli.src.llm.model import question_answer
 import subprocess
 import click
 import pyfiglet
 from rich.panel import Panel
 from rich.console import Console
 from rich.align import Align
-from questionaire import questionaire
+from nexcli.src.questionaire import questionaire
 
 console = Console()
 
@@ -38,7 +38,7 @@ def _(event):
 
 session = PromptSession(auto_suggest=InlineCommandSuggest(), key_bindings=kb)
 
-def main():
+def startCli():
     # clear screen
 
     subprocess.run("clear", shell=True, check=True, text=True, capture_output=True)
@@ -79,6 +79,8 @@ def setCommand(command):
         except subprocess.CalledProcessError as e:
             click.secho("Error: " + e.stderr, fg='red')
     return
+
+
 if __name__ == "__main__":
-    main()
+    startCli()
 

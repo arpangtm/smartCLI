@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 from typing import Literal
 import json
 from urllib3 import response
-from RAG import RAG_Search
+from nexcli.src.RAG import RAG_Search
 
 load_dotenv()
 

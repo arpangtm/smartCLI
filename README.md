@@ -13,12 +13,7 @@ At its core, SmartCLI is an **agentic AI system**—capable of reasoning, adapti
 ### Context-Aware Command Recommendations
 - Real-time suggestions based on shell state and user intent.
 - AI-powered autocompletion with semantic understanding.
-- Learns from usage patterns to improve relevance over time.
 
-### Beginner Learning Mode
-- Dedicated instructional interface for CLI newcomers.
-- Stepwise command breakdowns with inline explanations.
-- Interactive scaffolding that builds confidence and fluency.
 
 ### Multi-Modal Conversational Agent
 - Accepts natural language queries beyond Bash syntax.
@@ -28,7 +23,6 @@ At its core, SmartCLI is an **agentic AI system**—capable of reasoning, adapti
 ### Autonomous Error Debugging
 - Detects and diagnoses runtime errors in Bash scripts.
 - Suggests corrective actions or auto-applies fixes with user approval.
-- Tracks error patterns to improve future resilience.
 
 ### Retrieval-Augmented Personalization (RAG)
 - Automatically activates when general questions are asked.

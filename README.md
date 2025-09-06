@@ -2,7 +2,7 @@
 
 ## Overview
 
-**SmartCLI** is a next-generation, multi-modal command-line interface engineered to elevate the Bash experience across the skill spectrum. Designed to remain invisible to power users while guiding beginners with contextual intelligence, SmartCLI redefines shell interaction through semantic command suggestions, conversational assistance, and autonomous error resolution.
+**SmartCLI** is a next-generation, multi-modal (text and image input) command-line interface engineered to elevate the Bash experience across the skill spectrum. Designed to remain invisible to power users while guiding beginners with contextual intelligence, SmartCLI redefines shell interaction through semantic command suggestions, conversational assistance, and autonomous error resolution.
 
 At its core, SmartCLI is an **agentic AI system**—capable of reasoning, adapting, and conversing—built to foster intuitive learning and accelerate command-line mastery. It also integrates **Retrieval-Augmented Generation (RAG)** to deliver hyper-personalized answers grounded in user-provided files and directories.
 

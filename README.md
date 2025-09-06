@@ -41,9 +41,10 @@ At its core, SmartCLI is an **agentic AI system**—capable of reasoning, adapti
 - Minimalist overlay for command suggestions.
 - Ideal for power users seeking occasional assistance.
 
-### 2. **Learning Mode**
-- Rich instructional interface with guided walkthroughs.
-- Includes sandboxed command simulations and feedback loops.
+### 2. **Image Mode**
+- type !image to enter image mode
+- Drag and drop your image.
+- Ask questions about the image.
 
 ### 3. **Debug Mode**
 - Activated upon error detection.

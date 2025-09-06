@@ -10,6 +10,7 @@ from rich.panel import Panel
 from rich.console import Console
 from rich.align import Align
 from nexcli.src.questionaire import questionaire
+from nexcli.src.utils.specialCommands import nexCommand
 
 console = Console()
 
@@ -45,6 +46,8 @@ def startCli():
     setup_success = questionaire()
     if not setup_success:
         return
+    
+    
     subprocess.run("clear", shell=True, check=True, text=True, capture_output=True)
     banner_text = pyfiglet.figlet_format("NEXCLI", font="slant")
     banner_text = Align.center(banner_text)
@@ -53,6 +56,7 @@ def startCli():
     while True:
         try:
             command = session.prompt(">> ")
+            nexCommand(command)
             try:
                 result = subprocess.run(command, shell=True, check=True, text=True, capture_output=True)
                 click.secho(result.stdout, fg='white')

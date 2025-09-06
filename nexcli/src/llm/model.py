@@ -6,6 +6,7 @@ from typing import Literal
 import json
 from urllib3 import response
 from nexcli.src.RAG import RAG_Search
+from nexcli.src.utils.imageProcessing import encode_image_to_base64
 
 load_dotenv()
 
@@ -111,3 +112,23 @@ def command_question(prompt):
     return {"question_type":"command","answer":command}
 
 
+def image_question(file_path, prompt):
+    print("Image Path: ", file_path)
+    print("Prompt: ", prompt)
+    base64_image = encode_image_to_base64(file_path)
+    data_url = f"data:image/jpeg;base64,{base64_image}"
+    prompt = f"""{{question:"{prompt}"}}"""
+    response = client.chat.completions.create(
+        model="mistralai/mistral-small-3.2-24b-instruct:free",
+        messages=[
+            {"role": "system", "content": f"""
+            You are a terminal helper assistant. Help the user with a question about an image. Give the answer in 2-3 lines only.
+            """},
+            {
+                "role": "user",
+                "content": [{"type": "text", "text": prompt},{"type":"image_url", "image_url": {"url": data_url}}]
+            }
+        ],
+        reasoning_effort="low")
+    command = response.choices[0].message.content.strip("`")
+    return {"question_type":"command","answer":command}
